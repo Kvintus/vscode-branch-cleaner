@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Extension scaffold, activation, and packaging** — Loadable extension with Cleanup Branches command, lazy activation, `vscode.git` dependency, typecheck/bundle/package flow, and README expectations for editors.
 - [x] **Phase 2: Git repository read path** — Repository handle, branch and upstream metadata for classification, user-visible errors on Git failures.
-- [ ] **Phase 3: Domain — candidates, baseline, merge** — gitcleaner-style candidate set (excluding current branch), `origin/HEAD` baseline with documented fallbacks, consistent merged labels; automated tests for pure domain logic.
+- [x] **Phase 3: Domain — candidates, baseline, merge** — gitcleaner-style candidate set (excluding current branch), `origin/HEAD` baseline with documented fallbacks, consistent merged labels; automated tests for pure domain logic.
 - [ ] **Phase 4: Cleanup review UI** — Multi-select QuickPick (or equivalent), explicit per-branch delete selection only, baseline visible in UI, dismiss leaves branches unchanged.
 - [ ] **Phase 5: Safety, local deletion, and outcomes** — Non-merged handling consistent with labels, local-only deletes, aggregated success/failure summary after attempts.
 
@@ -76,7 +76,12 @@ Plans:
 4. Every candidate row’s merged/not-merged signal is computed against the **same resolved baseline** that downstream eligibility will use.
 5. Automated tests exercise pure domain logic (candidate selection and merge/baseline classification) using fixtures where practical.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [x] `03-01-PLAN.md` — Vitest harness, pure domain (candidates + baseline from ref snapshots)
+- [x] `03-02-PLAN.md` — getRefs/getMergeBase adapters, buildCleanupRunPlan, command summary
 
 ### Phase 4: Cleanup review UI
 
@@ -124,6 +129,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Extension scaffold, activation, and packaging | 2/2 | Done | 2026-04-14 |
 | 2. Git repository read path | 2/2 | Done (UAT partial) | 2026-04-14 |
-| 3. Domain — candidates, baseline, merge | 0/TBD | Not started | - |
+| 3. Domain — candidates, baseline, merge | 2/2 | Done | 2026-04-14 |
 | 4. Cleanup review UI | 0/TBD | Not started | - |
 | 5. Safety, local deletion, and outcomes | 0/TBD | Not started | - |
