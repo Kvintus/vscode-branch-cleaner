@@ -1,5 +1,11 @@
 # vscode-branch-cleaner
 
+## 1.1.1
+
+### Patch Changes
+
+- c34d8d0: Split publish jobs
+
 ## 1.1.0
 
 ### Minor Changes
