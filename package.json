@@ -7,7 +7,7 @@
   "publisher": "Kvintus",
   "repository": {
     "type": "git",
-    "url": "https://github.com/momentum/vscode-branch-cleaner.git"
+    "url": "https://github.com/Kvintus/vscode-branch-cleaner.git"
   },
   "license": "MIT",
   "icon": "media/branch-cleaner.png",
