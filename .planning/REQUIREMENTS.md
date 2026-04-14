@@ -33,9 +33,9 @@
 
 ### Safety & deletion
 
-- [ ] **SAFE-01**: **Non-merged** selections are handled by a **consistent safety policy** (block delete, or strong confirmation — chosen once and reflected in UX copy) that **never contradicts** merge labels.
-- [ ] **SAFE-02**: v1 performs **local branch deletion only** (no remote/host branch deletion).
-- [ ] **SAFE-03**: After deletion attempts, user sees a **summary** of successes and failures (no silent partial success).
+- [x] **SAFE-01**: **Non-merged** selections are handled by a **consistent safety policy** (block delete, or strong confirmation — chosen once and reflected in UX copy) that **never contradicts** merge labels.
+- [x] **SAFE-02**: v1 performs **local branch deletion only** (no remote/host branch deletion).
+- [x] **SAFE-03**: After deletion attempts, user sees a **summary** of successes and failures (no silent partial success).
 
 ### Verification
 
@@ -82,9 +82,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UXP-01 | 4 | Pending |
 | UXP-02 | 4 | Pending |
 | UXP-03 | 4 | Pending |
-| SAFE-01 | 5 | Pending |
-| SAFE-02 | 5 | Pending |
-| SAFE-03 | 5 | Pending |
+| SAFE-01 | 5 | Complete |
+| SAFE-02 | 5 | Complete |
+| SAFE-03 | 5 | Complete |
 | QUAL-01 | 3 | Pending |
 | QUAL-02 | 1 | Pending |
 
