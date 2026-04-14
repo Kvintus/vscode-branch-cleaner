@@ -106,7 +106,7 @@ Checking: vsce package requires publisher in package.json for marketplace but fo
     - `rg -n 'branchCleaner.cleanupBranches' package.json` returns matches in both contributes.commands and activationEvents onCommand entry.
     - `rg -n 'workspaceContains:\\*\\*/\\.git' package.json` matches OR `rg -n 'workspaceContains' package.json` matches the substring `**/.git` inside the activationEvents string value.
     - `rg -n '"vscode\.git"' package.json` matches inside extensionDependencies array.
-    - `rg -n '"\*"' package.json` must NOT match activationEvents universal star (reject literal activationEvents entry `"*"`).
+    - `node -e "const p=require('./package.json'); const ae=p.activationEvents||[]; process.exit(ae.includes('*')?1:0)"` exits 0 (no universal `*` activation event).
     - `rg -n 'vscode:prepublish' package.json` shows script calling npm run package (or equivalent chain ending in production bundle).
     - `rg -n 'check-types' package.json` and `rg 'tsc --noEmit' package.json` both match.
     - `rg -n '"main":' package.json` shows "./dist/extension.js".

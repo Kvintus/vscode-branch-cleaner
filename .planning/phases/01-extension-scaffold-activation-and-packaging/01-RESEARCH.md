@@ -252,16 +252,11 @@ Use **`npm-run-all -p watch:esbuild watch:tsc`** as in official bundling doc [CI
 
 **If CONTEXT existed:** Locked decisions would be copied verbatim under `<user_constraints>`.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Exact `engines.vscode` minimum (e.g. 1.96 vs 1.85)?**
-   - What we know: Must match `@types/vscode`; team must pick oldest supported VS Code + Cursor [CITED: extension-manifest] [VERIFIED: project gap in SUMMARY.md].
-   - What's unclear: Maintainer's oldest Cursor build in practice.
-   - Recommendation: Pick conservative `^1.96.0` (or align to `@types@1.115` line) and document in README (QUAL-02).
+1. **Exact `engines.vscode` minimum (e.g. 1.96 vs 1.85)?** — **RESOLVED:** Phase 1 plans lock **`engines.vscode`: `^1.96.0`** with **`@types/vscode`: `^1.96.0`** (same major.minor line). README (QUAL-02) documents that floor; bump both together when raising the minimum.
 
-2. **`extensionKind` for Remote SSH?**
-   - What we know: Git repo often **workspace**-side [CITED: https://code.visualstudio.com/api/advanced-topics/extension-host — planner should read if Git integration runs remotely].
-   - Recommendation: Evaluate default vs `["workspace","ui"]` during implementation; not strictly blocking Phase 1 scaffold.
+2. **`extensionKind` for Remote SSH?** — **RESOLVED (deferred):** Not in Phase 1 scope. Ship with default `extensionKind` behavior only; open a future phase or backlog item if Remote SSH / split extension-host issues appear once Git API wiring lands.
 
 ## Environment Availability
 
