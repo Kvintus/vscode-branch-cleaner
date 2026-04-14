@@ -39,13 +39,15 @@ jobs:
         run: npm run compile
 
   release:
-    name: Release
+    name: Release (changesets)
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -59,16 +61,66 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Changesets (version PR, GitHub Release, or registry publish)
+      - name: Changesets (version PR, GitHub Release, or version publish)
         id: changesets
         uses: changesets/action@v1
         with:
           version: npm run changeset:version
-          publish: npm run release
+          publish: npm run changeset:publish
           createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Personal access token for https://marketplace.visualstudio.com (used by vsce publish).
+
+  release-marketplace:
+    name: Publish — Visual Studio Marketplace
+    needs: [build, release]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync to latest main
+        run: git pull --ff-only origin main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to Visual Studio Marketplace
+        run: npm run release:marketplace
+        env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-          # Personal access token for https://open-vsx.org (used by ovsx publish).
+
+  release-openvsx:
+    name: Publish — Open VSX
+    needs: [build, release]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync to latest main
+        run: git pull --ff-only origin main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to Open VSX Registry
+        run: npm run release:openvsx
+        env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
