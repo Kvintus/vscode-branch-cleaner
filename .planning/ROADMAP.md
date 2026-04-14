@@ -97,7 +97,12 @@ Plans:
 2. Only branches the user **explicitly selects** can proceed toward deletion; there is no v1 action that deletes all candidates without per-item selection.
 3. The UI shows the **resolved baseline** (ref or explicit fallback label) alongside merge indicators so merged vs not merged is interpretable.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [x] `04-01-PLAN.md` — QuickPick wiring, cleanupReviewPick helpers, no delete APIs
+- [x] `04-02-PLAN.md` — Vitest for sort/detail; regression grep gates
 
 **UI hint**: yes
 
