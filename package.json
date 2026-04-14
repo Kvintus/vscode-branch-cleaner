@@ -35,6 +35,7 @@
     ]
   },
   "scripts": {
+    "test": "npm run test:unit",
     "check-types": "tsc --noEmit",
     "test:unit": "vitest run --config vitest.config.mts",
     "compile": "npm run check-types && node esbuild.js",
