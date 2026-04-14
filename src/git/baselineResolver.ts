@@ -10,6 +10,22 @@ import { BaselineResolutionError } from '../domain/types';
 
 const REF_TYPE_REMOTE_HEAD = 1;
 
+/**
+ * Build canonical `refs/remotes/origin/...` from `Repository.getRefs` / `Ref` fields.
+ * The Git extension sometimes uses `name: "main"` and sometimes `name: "origin/main"` for
+ * the same remote; naive concatenation would yield `refs/remotes/origin/origin/HEAD`.
+ */
+export function normalizeOriginRemoteFullRef(remote: string, name: string): string {
+  const n = name.trim();
+  if (n.startsWith('refs/')) {
+    return n;
+  }
+  if (n.startsWith(`${remote}/`)) {
+    return `refs/remotes/${n}`;
+  }
+  return `refs/remotes/${remote}/${n}`;
+}
+
 export function mapRepositoryRefsToRemoteSnapshots(refs: readonly Ref[]): RemoteRefSnapshot[] {
   const out: RemoteRefSnapshot[] = [];
   for (const ref of refs) {
@@ -19,7 +35,7 @@ export function mapRepositoryRefsToRemoteSnapshots(refs: readonly Ref[]): Remote
     if (ref.remote !== 'origin' || !ref.name) {
       continue;
     }
-    const full = ref.name.startsWith('refs/') ? ref.name : `refs/remotes/origin/${ref.name}`;
+    const full = normalizeOriginRemoteFullRef(ref.remote, ref.name);
     out.push({ name: full, commit: ref.commit, type: ref.type });
   }
   return out;

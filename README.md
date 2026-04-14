@@ -37,4 +37,16 @@ npx --yes @vscode/vsce@3.7.1 package -o vscode-branch-cleaner-0.0.1.vsix
 
 Install the resulting VSIX from the Extensions view (**Install from VSIX…**).
 
-The `publisher` field in `package.json` is set to `local` for local packaging; publishing to the Marketplace requires a real publisher id.
+The `publisher` field in `package.json` is set to `local` for local packaging; publishing to the Marketplace requires a real **publisher id** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/manage) (replace `local` before any real publish).
+
+## Automated Marketplace release (maintainers)
+
+Releases use [Changesets](https://github.com/changesets/changesets) and [`.github/workflows/release.yml`](.github/workflows/release.yml):
+
+1. Merge work that includes a new file under `.changeset/` (run `npx changeset` locally to add one).
+2. On `main`, the workflow opens or updates a **Version Packages** pull request (`changeset version` + changelog).
+3. After that PR is merged, the next run on `main` executes **`npm run release:marketplace`** (unit tests + `vsce publish`) when Changesets detects a releasable version bump.
+
+**GitHub:** add a repository secret named **`VSCE_PAT`** — a [personal access token](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#azure-devops) from Azure DevOps with **Marketplace (Manage)** scope. The workflow passes it to `vsce` via the `VSCE_PAT` environment variable.
+
+**Local dry run (no upload):** `npm run test:unit && npx vsce package` builds a `.vsix` without publishing.

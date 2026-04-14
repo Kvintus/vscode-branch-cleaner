@@ -260,17 +260,16 @@ Match **candidate short `name`** to **`repository.state.HEAD?.name`** per D-01/D
 | A1 | Runtime `Branch` / upstream may expose or imply “gone” beyond vendored `UpstreamRef` | Pitfall 4 | Wrong candidate set until runtime verified |
 | A2 | `getMergeBase(ref1, ref2)` is symmetric enough that `mergeBase(candidate, baseline)` equals candidate tip OID when candidate ⊆ baseline history | Pattern 1 | Rare topology edge cases — treat `unknown` if ambiguous |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Exact abandonment signal for “gone” with only `LocalBranchSummary` fields**
+1. **Exact abandonment signal for “gone” with only `LocalBranchSummary` fields** — **RESOLVED**
    - **What we know:** D-01 requires no upstream or missing/invalid/gone tracking; Phase 2 typed summary mirrors `git.d.ts` `[CITED: 03-CONTEXT.md, src/git/branches.ts]`.
-   - **What’s unclear:** Whether `commit` omission on upstream always means “gone” vs “not yet fetched.”
-   - **Recommendation:** Spike against 1–2 real repos + `getRefs` for remote-tracking existence; encode explicit rules in domain with comments.
+   - **Resolution for planning:** Treat **no upstream** as abandoned; treat **upstream present but `commit` missing** after a successful `listLocalBranches` read as **abandoned / unknown-remote** for candidate purposes (conservative: still a candidate). Refine with `getRefs` existence checks in the adapter phase if needed — tracked in plan tasks, not blocking.
+   - **Recommendation (execution):** Prefer `getRefs` for remote-tracking existence when implementing “gone” edge cases; document chosen predicate in `src/domain/candidates.ts` header.
 
-2. **`getMergeBase` argument order / ref string format**
+2. **`getMergeBase` argument order / ref string format** — **RESOLVED**
    - **What we know:** API accepts `string` treeish `[CITED: src/types/git.d.ts]`.
-   - **What’s unclear:** Whether certain short names are rejected intermittently on Windows.
-   - **Recommendation:** Always pass **full ref names** from `getBranches`/`getRefs` outputs when available.
+   - **Resolution for planning:** **Order:** `getMergeBase(refA, refB)` is symmetric for merge-base purposes; plans standardize on **`getMergeBase(baselineRef, candidateRef)`**. **Refs:** always pass **full** `refs/heads/*` and `refs/remotes/*` strings from `getRefs` / `getBranches` outputs (per D-06 / CONTEXT).
 
 ## Environment Availability
 
