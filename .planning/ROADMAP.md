@@ -37,7 +37,12 @@ Decimal phases appear between their surrounding integers in numeric order.
 4. Maintainer can run documented scripts to typecheck, bundle, and produce a VSIX (or equivalent package) with `engines.vscode` aligned to the pinned API types.
 5. A new reader of the repository README understands that the target products are VS Code and Cursor and what minimum editor expectations mean at a high level.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [ ] `01-PLAN.md` — Toolchain, manifest (commands, lazy activation, vscode.git), esbuild + tsc, extension entrypoint
+- [ ] `02-PLAN.md` — README (QUAL-02), .vscodeignore / .gitignore, VSIX packaging proof
 
 ### Phase 2: Git repository read path
 
@@ -117,7 +122,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension scaffold, activation, and packaging | 0/TBD | Not started | - |
+| 1. Extension scaffold, activation, and packaging | 0/2 | Not started | - |
 | 2. Git repository read path | 0/TBD | Not started | - |
 | 3. Domain — candidates, baseline, merge | 0/TBD | Not started | - |
 | 4. Cleanup review UI | 0/TBD | Not started | - |
