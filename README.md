@@ -9,7 +9,7 @@
 - 🏷️ **Merge labels** — Each candidate is grouped and labeled as **merged into baseline**, **not merged into baseline**, or **could not verify merge** (when the check is inconclusive).
 - 🖼️ **Review UI** — A multi-select Quick Pick lists candidates with short explanations. **Merged** branches start selected; **Space** toggles selection; **Esc** cancels with no changes.
 
-![Branch Cleaner Quick Pick: baseline origin/main, merged vs not merged local branches, multi-select](media/demo/demo-picker.png)
+![Branch Cleaner Quick Pick: baseline origin/main, merged vs not merged local branches, multi-select](https://raw.githubusercontent.com/Kvintus/vscode-branch-cleaner/main/media/demo/demo-picker.png)
 
 ## 🚀 How to use
 
