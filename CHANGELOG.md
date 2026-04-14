@@ -1,5 +1,11 @@
 # vscode-branch-cleaner
 
+## 1.1.0
+
+### Minor Changes
+
+- bd276a0: Added publish to openvsx
+
 ## 1.0.1
 
 ### Patch Changes
