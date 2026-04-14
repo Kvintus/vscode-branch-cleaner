@@ -3,7 +3,7 @@
   "private": true,
   "displayName": "Branch Cleaner",
   "description": "Safe, explicit local branch cleanup inside the editor.",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "publisher": "Kvintus",
   "repository": {
     "type": "git",
