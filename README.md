@@ -1,22 +1,50 @@
-# VS Code Branch Cleaner
+# 🌿 Branch Cleaner
 
-A Visual Studio Code / Cursor extension for reviewing and cleaning local Git branches in a deliberate, gitcleaner-style flow (candidates, merge signal, explicit deletes). This repository is under active development; the current build is a **scaffold** that registers the **Cleanup Branches** command only.
+**Branch Cleaner** is a [Visual Studio Code](https://code.visualstudio.com/) extension that brings a [Git Cleaner (gitcleaner)](https://github.com/PavlikPolivka/gitcleaner)-style workflow into the editor: run **Cleanup Branches**, review **local** branches that look like cleanup candidates, and see whether each one is **merged** into your repo’s default integration branch—so you can decide what to remove without switching tools. It uses the same Git integration as VS Code (`vscode.git`); it does not delete remote branches.
 
-## Requirements / supported editors
+## ✨ Features
 
-The extension targets **Visual Studio Code** and **Cursor**. Cursor is a fork of the VS Code codebase; use a Cursor build whose underlying VS Code engine satisfies the range declared in `package.json` as **`engines.vscode`** — that field is the **minimum VS Code API version** this extension is written and tested against.
+- 🔍 **Cleanup candidates** — Local branches are offered for review when they look “abandoned” in the gitcleaner sense: no upstream, missing tip on the upstream ref, or the upstream is not on the `origin` remote. Your **current** branch is never listed.
+- 🎯 **Baseline branch** — Merge hints are computed against the default integration branch derived from **`origin`** (preferring `origin/HEAD`, with sensible fallbacks when that symref is missing).
+- 🏷️ **Merge labels** — Each candidate is grouped and labeled as **merged into baseline**, **not merged into baseline**, or **could not verify merge** (when the check is inconclusive).
+- 🖼️ **Review UI** — A multi-select Quick Pick lists candidates with short explanations. **Merged** branches start selected; **Space** toggles selection; **Esc** cancels with no changes.
 
-## Development
+![Branch Cleaner Quick Pick: baseline origin/main, merged vs not merged local branches, multi-select](media/demo/demo-picker.png)
 
-- **Node.js** 20 or newer
-- Clone the repository, then:
+## 🚀 How to use
+
+1. 📁 Open a **folder** that contains a Git checkout (not only loose files).
+2. 🔌 Ensure the built-in **Git** extension is enabled (this extension depends on `vscode.git`).
+3. ⌨️ Open the Command Palette and run **Git: Cleanup Branches**.
+4. ✅ In the picker, adjust the selection if needed, then confirm. (Deletion of selected branches is not performed in this version.)
+
+If no candidates match the rules, you’ll see an informational message instead of the picker.
+
+## ⚙️ Requirements
+
+- 💻 **VS Code** `1.96.0` or newer (see `engines.vscode` in `package.json`), or **Cursor** on a build whose underlying VS Code engine meets that minimum.
+- 📂 **Git** installed and available to VS Code’s Git support (same prerequisite as using Git in the editor).
+- 🧩 **Node.js** is not required to *use* the extension; it is only needed to build from source.
+
+## 🔒 Privacy
+
+The extension runs **entirely in your workspace** and talks to Git through VS Code’s APIs. It does not include telemetry and does not send branch names or repository data to external services.
+
+## 📦 Install
+
+- 🛍️ **Marketplace:** search for **Branch Cleaner** by publisher **Kvintus** in the Extensions view.
+- 📦 **VSIX:** build a package locally (see below), then use **Extensions: Install from VSIX…**.
+
+## 🛠️ Development
+
+Prerequisites: **Node.js 20+**.
 
 ```bash
 npm install
 npm run compile
 ```
 
-`npm run compile` runs `tsc --noEmit` followed by esbuild, producing `dist/extension.js`.
+`npm run compile` runs `tsc --noEmit` and esbuild, producing `dist/extension.js`.
 
 For iterative work:
 
@@ -24,29 +52,27 @@ For iterative work:
 npm run watch
 ```
 
-## Packaging
+Run unit tests:
 
-`npm run package` runs a **production** bundle (typecheck + minified esbuild). It does **not** emit a `.vsix` by itself.
+```bash
+npm run test:unit
+```
 
-To build a VSIX after compiling:
+Production bundle (typecheck + minified output):
+
+```bash
+npm run package
+```
+
+Build a VSIX (example filename):
 
 ```bash
 npm run compile
-npx --yes @vscode/vsce@3.7.1 package -o vscode-branch-cleaner-0.0.1.vsix
+npx --yes @vscode/vsce@3.7.1 package -o branch-cleaner.vsix
 ```
 
-Install the resulting VSIX from the Extensions view (**Install from VSIX…**).
+Publisher id for the Marketplace is set in `package.json` (`publisher`). Source repository: [github.com/momentum/vscode-branch-cleaner](https://github.com/momentum/vscode-branch-cleaner).
 
-The `publisher` field in `package.json` is set to `local` for local packaging; publishing to the Marketplace requires a real **publisher id** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/manage) (replace `local` before any real publish).
+## 📄 License
 
-## Automated Marketplace release (maintainers)
-
-Releases use [Changesets](https://github.com/changesets/changesets) and [`.github/workflows/release.yml`](.github/workflows/release.yml):
-
-1. Merge work that includes a new file under `.changeset/` (run `npx changeset` locally to add one).
-2. On `main`, the workflow opens or updates a **Version Packages** pull request (`changeset version` + changelog).
-3. After that PR is merged, the next run on `main` executes **`npm run release:marketplace`** (unit tests + `vsce publish`) when Changesets detects a releasable version bump.
-
-**GitHub:** add a repository secret named **`VSCE_PAT`** — a [personal access token](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#azure-devops) from Azure DevOps with **Marketplace (Manage)** scope. The workflow passes it to `vsce` via the `VSCE_PAT` environment variable.
-
-**Local dry run (no upload):** `npm run test:unit && npx vsce package` builds a `.vsix` without publishing.
+[MIT](LICENSE)
