@@ -1,5 +1,11 @@
 # vscode-branch-cleaner
 
+## 1.0.0
+
+### Major Changes
+
+- 97e78b1: First release
+
 ## 0.1.6
 
 ### Patch Changes
