@@ -26,12 +26,12 @@ npm run watch
 
 ## Packaging
 
-Produce a `.vsix` locally:
+`npm run package` runs a **production** bundle (typecheck + minified esbuild). It does **not** emit a `.vsix` by itself.
+
+To build a VSIX after compiling:
 
 ```bash
 npm run compile
-npm run package
-# or explicitly:
 npx --yes @vscode/vsce@3.7.1 package -o vscode-branch-cleaner-0.0.1.vsix
 ```
 
