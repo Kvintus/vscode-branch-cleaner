@@ -16,13 +16,13 @@ A **Visual Studio Code / Cursor extension** that recreates the workflow of the J
 
 ### Active
 
-- [ ] User can run a **Cleanup Branches** command from the editor.
-- [ ] Extension lists **cleanup candidates** using **gitcleaner-style rules** (local branches without a usable upstream / missing remote tracking—not a generic “all locals” list).
-- [ ] **Current branch** is never listed as a candidate.
-- [ ] For each candidate, the UI shows **merged vs not merged** into the **default branch implied by `origin/HEAD`**, with a **sensible fallback** when `origin/HEAD` is missing or ambiguous.
-- [ ] User can **select which candidates to delete** (and implicitly or explicitly **keep** the rest).
-- [ ] Before delete, behavior matches gitcleaner’s safety idea: **do not delete** (or clearly block/warn on) branches that are **not fully merged** into the comparison branch, consistent with user expectations from the JetBrains flow.
-- [ ] Extension is **practical in both VS Code and Cursor** (standard VS Code extension packaging and APIs).
+Tracked as checkable **REQ-IDs** in `.planning/REQUIREMENTS.md` (19 v1 requirements). Summary:
+
+- [ ] **Cleanup Branches** command and **lazy** extension activation suitable for Git workflows.
+- [ ] **vscode.git** integration: read branches/upstream, resolve **`origin/HEAD`** baseline with fallbacks, **gitcleaner-style** candidates (never the **current branch**).
+- [ ] **QuickPick** (multi-select) shows **merged vs not merged** vs the same baseline used for eligibility; user **explicitly** chooses deletes; **cancel** is a no-op.
+- [ ] **Safety** aligned with labels for **non-merged** selections; **local delete only**; clear **errors** and a **post-run summary**.
+- [ ] **Tooling + tests** for packaging (VS Code/Cursor) and **automated domain** coverage where practical.
 
 ### Out of Scope
 
