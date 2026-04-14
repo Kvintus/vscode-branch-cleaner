@@ -9,6 +9,7 @@
     "url": "https://github.com/momentum/vscode-branch-cleaner.git"
   },
   "license": "MIT",
+  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.96.0",
     "node": ">=20"
@@ -35,7 +36,7 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --config vitest.config.mts",
     "compile": "npm run check-types && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
