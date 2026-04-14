@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Git repository read path** — Repository handle, branch and upstream metadata for classification, user-visible errors on Git failures.
 - [x] **Phase 3: Domain — candidates, baseline, merge** — gitcleaner-style candidate set (excluding current branch), `origin/HEAD` baseline with documented fallbacks, consistent merged labels; automated tests for pure domain logic.
 - [x] **Phase 4: Cleanup review UI** — Multi-select QuickPick (or equivalent), explicit per-branch delete selection only, baseline visible in UI, dismiss leaves branches unchanged. (completed 2026-04-14)
-- [ ] **Phase 5: Safety, local deletion, and outcomes** — Non-merged handling consistent with labels, local-only deletes, aggregated success/failure summary after attempts.
+- [x] **Phase 5: Safety, local deletion, and outcomes** — Non-merged handling consistent with labels, local-only deletes, aggregated success/failure summary after attempts. (completed 2026-04-14)
 
 ## Phase Details
 
@@ -124,8 +124,8 @@ Plans:
 
 Plans:
 
-- [ ] `05-01-PLAN.md` — `localBranchDeletion` helpers, extension wiring, modals (**SAFE-01–03**)
-- [ ] `05-02-PLAN.md` — Vitest + grep gates
+- [x] `05-01-PLAN.md` — `localBranchDeletion` helpers, extension wiring, modals (**SAFE-01–03**)
+- [x] `05-02-PLAN.md` — Vitest + grep gates
 
 **UI hint**: yes
 
@@ -141,4 +141,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Git repository read path | 2/2 | Done (UAT partial) | 2026-04-14 |
 | 3. Domain — candidates, baseline, merge | 2/2 | Done | 2026-04-14 |
 | 4. Cleanup review UI | 2/2 | Complete    | 2026-04-14 |
-| 5. Safety, local deletion, and outcomes | 0/2 | Planned | - |
+| 5. Safety, local deletion, and outcomes | 2/2 | Complete | 2026-04-14 |
