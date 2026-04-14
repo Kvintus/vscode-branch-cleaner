@@ -1,8 +1,8 @@
 {
   "name": "vscode-branch-cleaner",
   "displayName": "Branch Cleaner",
-  "description": "Git Cleaner–style local branch review in VS Code: list cleanup candidates, see merged / not merged vs your default branch from origin, and inspect them in one place—powered by the built-in Git extension.",
-  "version": "0.1.4",
+  "description": "Safe, explicit local branch cleanup inside the editor.",
+  "version": "0.1.3",
   "publisher": "Kvintus",
   "repository": {
     "type": "git",
