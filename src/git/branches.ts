@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import type { CancellationToken } from 'vscode';
 import type { Branch, Ref, Repository } from '../types/git';
 
 /** Matches `RefType.Head` in `src/types/git.d.ts` (const enum — no runtime import). */
@@ -22,7 +22,7 @@ function isLocalHead(ref: Ref): ref is Branch {
 
 export async function listLocalBranches(
   repository: Repository,
-  token?: vscode.CancellationToken,
+  token?: CancellationToken,
 ): Promise<LocalBranchSummary[]> {
   const refs = await repository.getBranches({ remote: false }, token);
   return refs.filter(isLocalHead).map((b) => ({
