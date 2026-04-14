@@ -120,7 +120,12 @@ Plans:
 2. Successful operations perform **local branch deletion only**; no v1 path deletes `origin/*` or otherwise mutates the remote host branch namespace.
 3. After deletion attempts finish, the user sees a **summary** listing successes and failures (including partial batch outcomes), with no silent partial success.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [ ] `05-01-PLAN.md` — `localBranchDeletion` helpers, extension wiring, modals (**SAFE-01–03**)
+- [ ] `05-02-PLAN.md` — Vitest + grep gates
 
 **UI hint**: yes
 
@@ -136,4 +141,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Git repository read path | 2/2 | Done (UAT partial) | 2026-04-14 |
 | 3. Domain — candidates, baseline, merge | 2/2 | Done | 2026-04-14 |
 | 4. Cleanup review UI | 2/2 | Complete    | 2026-04-14 |
-| 5. Safety, local deletion, and outcomes | 0/TBD | Not started | - |
+| 5. Safety, local deletion, and outcomes | 0/2 | Planned | - |
