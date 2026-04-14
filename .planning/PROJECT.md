@@ -12,13 +12,13 @@ A **Visual Studio Code / Cursor extension** that recreates the workflow of the J
 
 ### Validated
 
-(None yet — ship to validate)
+- **Phase 1 (2026-04-14):** Loadable extension scaffold — **Git: Cleanup Branches** command, lazy activation (`onCommand` + `workspaceContains:**/.git`), `vscode.git` dependency, `npm run compile` / `npm run package` + documented VSIX via `vsce`, README for **VS Code** and **Cursor** with `engines.vscode` explained (requirement IDs **EXT-01–EXT-04**, **QUAL-02**; see `01-VERIFICATION.md`).
 
 ### Active
 
 Tracked as checkable **REQ-IDs** in `.planning/REQUIREMENTS.md` (19 v1 requirements). Summary:
 
-- [ ] **Cleanup Branches** command and **lazy** extension activation suitable for Git workflows.
+- [x] **Cleanup Branches** command and **lazy** extension activation suitable for Git workflows. *(Phase 1 — scaffold)*
 - [ ] **vscode.git** integration: read branches/upstream, resolve **`origin/HEAD`** baseline with fallbacks, **gitcleaner-style** candidates (never the **current branch**).
 - [ ] **QuickPick** (multi-select) shows **merged vs not merged** vs the same baseline used for eligibility; user **explicitly** chooses deletes; **cancel** is a no-op.
 - [ ] **Safety** aligned with labels for **non-merged** selections; **local delete only**; clear **errors** and a **post-run summary**.
@@ -35,7 +35,7 @@ Tracked as checkable **REQ-IDs** in `.planning/REQUIREMENTS.md` (19 v1 requireme
 
 - **Prior art:** [PavlikPolivka/gitcleaner](https://github.com/PavlikPolivka/gitcleaner) — “Delete Old Branches” style action: list branches **without tracking remotes**, exclude current branch, and check **merged to current branch** in the original README (here we anchor merge checks to **`origin/HEAD`** per product decision).
 - **Motivation:** No satisfactory Marketplace alternative; WebStorm is kept installed almost solely for this cleanup flow.
-- **Repository state:** Greenfield extension project (planning initialized in-repo).
+- **Repository state:** Extension scaffold and packaging path landed (Phase 1); Git read path not yet implemented.
 
 ## Constraints
 
@@ -72,4 +72,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-14 after initialization*
+*Last updated: 2026-04-14 after Phase 1 completion*
