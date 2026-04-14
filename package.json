@@ -4,6 +4,10 @@
   "description": "Safe, explicit local branch cleanup inside the editor.",
   "version": "0.0.1",
   "publisher": "local",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/momentum/vscode-branch-cleaner.git"
+  },
   "license": "MIT",
   "engines": {
     "vscode": "^1.96.0",
