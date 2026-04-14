@@ -250,17 +250,11 @@ Source: [CITED: VS Code API Reference — window.createQuickPick](https://code.v
 | A2 | Candidate `branch.name` values are unique within a single plan | Row mapping | Wrong branch resolved from pick |
 | A3 | No built-in QuickPick control in 1.96+ violates **UXP-02** without extension-authored copy | Pitfall 5 | Product/regression risk — UAT |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Accept with zero selection vs cancel — exact `showQuickPick` return values on VS Code 1.96.x**  
-   - *What we know:* Typing is `T[] | undefined` ([VERIFIED: `@types/vscode`]).  
-   - *What's unclear:* Whether “OK” with zero picks yields `[]` or `undefined` in all dismissal paths.  
-   - *Recommendation:* Manual UAT on minimum supported VS Code; if ambiguous, use **`createQuickPick`** and explicit accept handler.
+1. **Accept with zero selection vs cancel (`showQuickPick` return values)** — **RESOLVED:** Treat **`undefined`** as **cancel / dismiss** (no follow-up action). Treat **`[]`** as **confirm with no rows selected** (still **no Git mutations** in Phase 4). Phase 5 will interpret both as “no branches to delete” until delete exists. **UAT:** verify Esc → `undefined`; OK with zero checked items → `[]` on minimum `engines.vscode`; if a host build diverges, switch that code path to `createQuickPick` with explicit accept.
 
-2. **Should merged rows be visually grouped with separators (`QuickPickItemKind.Separator`)?**  
-   - *What we know:* API supports separators ([VERIFIED: `QuickPickItemKind`]).  
-   - *What's unclear:* Whether separators improve scan enough to justify extra complexity vs sort-only (**D-04**).  
-   - *Recommendation:* v1 = sort only; separators = polish if cramped ([ASSUMED] preference).
+2. **Separators between merge groups** — **RESOLVED (Phase 4):** **No** `QuickPickItemKind.Separator` in v1; **D-04** ordering (merged → not_merged → unknown, then A–Z) is sufficient. Revisit under **UXP-10** if users report scan issues.
 
 ## Environment Availability
 
