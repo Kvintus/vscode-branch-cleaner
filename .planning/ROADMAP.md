@@ -13,10 +13,10 @@ Ship a VS Code/Cursor extension that lists gitcleaner-style local branch candida
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Extension scaffold, activation, and packaging** — Loadable extension with Cleanup Branches command, lazy activation, `vscode.git` dependency, typecheck/bundle/package flow, and README expectations for editors.
-- [ ] **Phase 2: Git repository read path** — Repository handle, branch and upstream metadata for classification, user-visible errors on Git failures.
-- [ ] **Phase 3: Domain — candidates, baseline, merge** — gitcleaner-style candidate set (excluding current branch), `origin/HEAD` baseline with documented fallbacks, consistent merged labels; automated tests for pure domain logic.
-- [ ] **Phase 4: Cleanup review UI** — Multi-select QuickPick (or equivalent), explicit per-branch delete selection only, baseline visible in UI, dismiss leaves branches unchanged.
+- [x] **Phase 1: Extension scaffold, activation, and packaging** — Loadable extension with Cleanup Branches command, lazy activation, `vscode.git` dependency, typecheck/bundle/package flow, and README expectations for editors.
+- [x] **Phase 2: Git repository read path** — Repository handle, branch and upstream metadata for classification, user-visible errors on Git failures.
+- [x] **Phase 3: Domain — candidates, baseline, merge** — gitcleaner-style candidate set (excluding current branch), `origin/HEAD` baseline with documented fallbacks, consistent merged labels; automated tests for pure domain logic.
+- [x] **Phase 4: Cleanup review UI** — Multi-select QuickPick (or equivalent), explicit per-branch delete selection only, baseline visible in UI, dismiss leaves branches unchanged. (completed 2026-04-14)
 - [ ] **Phase 5: Safety, local deletion, and outcomes** — Non-merged handling consistent with labels, local-only deletes, aggregated success/failure summary after attempts.
 
 ## Phase Details
@@ -76,7 +76,12 @@ Plans:
 4. Every candidate row’s merged/not-merged signal is computed against the **same resolved baseline** that downstream eligibility will use.
 5. Automated tests exercise pure domain logic (candidate selection and merge/baseline classification) using fixtures where practical.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [x] `03-01-PLAN.md` — Vitest harness, pure domain (candidates + baseline from ref snapshots)
+- [x] `03-02-PLAN.md` — getRefs/getMergeBase adapters, buildCleanupRunPlan, command summary
 
 ### Phase 4: Cleanup review UI
 
@@ -92,7 +97,12 @@ Plans:
 2. Only branches the user **explicitly selects** can proceed toward deletion; there is no v1 action that deletes all candidates without per-item selection.
 3. The UI shows the **resolved baseline** (ref or explicit fallback label) alongside merge indicators so merged vs not merged is interpretable.
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [x] `04-01-PLAN.md` — QuickPick wiring, cleanupReviewPick helpers, no delete APIs
+- [x] `04-02-PLAN.md` — Vitest for sort/detail; regression grep gates
 
 **UI hint**: yes
 
@@ -122,8 +132,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension scaffold, activation, and packaging | 0/2 | Not started | - |
-| 2. Git repository read path | 0/TBD | Not started | - |
-| 3. Domain — candidates, baseline, merge | 0/TBD | Not started | - |
-| 4. Cleanup review UI | 0/TBD | Not started | - |
+| 1. Extension scaffold, activation, and packaging | 2/2 | Done | 2026-04-14 |
+| 2. Git repository read path | 2/2 | Done (UAT partial) | 2026-04-14 |
+| 3. Domain — candidates, baseline, merge | 2/2 | Done | 2026-04-14 |
+| 4. Cleanup review UI | 2/2 | Complete    | 2026-04-14 |
 | 5. Safety, local deletion, and outcomes | 0/TBD | Not started | - |
