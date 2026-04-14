@@ -68,32 +68,32 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EXT-01 | — | Pending |
-| EXT-02 | — | Pending |
-| EXT-03 | — | Pending |
-| EXT-04 | — | Pending |
-| GIT-01 | — | Pending |
-| GIT-02 | — | Pending |
-| GIT-03 | — | Pending |
-| DOM-01 | — | Pending |
-| DOM-02 | — | Pending |
-| DOM-03 | — | Pending |
-| DOM-04 | — | Pending |
-| UXP-01 | — | Pending |
-| UXP-02 | — | Pending |
-| UXP-03 | — | Pending |
-| SAFE-01 | — | Pending |
-| SAFE-02 | — | Pending |
-| SAFE-03 | — | Pending |
-| QUAL-01 | — | Pending |
-| QUAL-02 | — | Pending |
+| EXT-01 | 1 | Pending |
+| EXT-02 | 1 | Pending |
+| EXT-03 | 1 | Pending |
+| EXT-04 | 1 | Pending |
+| GIT-01 | 2 | Pending |
+| GIT-02 | 2 | Pending |
+| GIT-03 | 2 | Pending |
+| DOM-01 | 3 | Pending |
+| DOM-02 | 3 | Pending |
+| DOM-03 | 3 | Pending |
+| DOM-04 | 3 | Pending |
+| UXP-01 | 4 | Pending |
+| UXP-02 | 4 | Pending |
+| UXP-03 | 4 | Pending |
+| SAFE-01 | 5 | Pending |
+| SAFE-02 | 5 | Pending |
+| SAFE-03 | 5 | Pending |
+| QUAL-01 | 3 | Pending |
+| QUAL-02 | 1 | Pending |
 
 **Coverage:**
 
-- v1 requirements: 18 total
-- Mapped to phases: 0
-- Unmapped: 18 (roadmap pending)
+- v1 requirements: 19 total
+- Mapped to phases: 19
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-14*  
-*Last updated: 2026-04-14 after initial definition*
+*Last updated: 2026-04-14 after roadmap traceability*
