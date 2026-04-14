@@ -2,7 +2,7 @@
   "name": "vscode-branch-cleaner",
   "displayName": "VS Code Branch Cleaner",
   "description": "Safe, explicit local branch cleanup inside the editor.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "local",
   "repository": {
     "type": "git",
