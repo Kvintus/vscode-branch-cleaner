@@ -14,6 +14,7 @@ A **Visual Studio Code / Cursor extension** that recreates the workflow of the J
 
 - **Phase 1 (2026-04-14):** Loadable extension scaffold — **Git: Cleanup Branches** command, lazy activation (`onCommand` + `workspaceContains:**/.git`), `vscode.git` dependency, `npm run compile` / `npm run package` + documented VSIX via `vsce`, README for **VS Code** and **Cursor** with `engines.vscode` explained (requirement IDs **EXT-01–EXT-04**, **QUAL-02**; see `01-VERIFICATION.md`).
 - **Phase 3 (2026-04-14):** Pure **domain** (abandoned candidates, `origin/HEAD` baseline ladder from ref snapshots, structured no-baseline error), **Vitest** unit tests, **vscode.git** `getRefs` / `getMergeBase` adapters, **buildCleanupRunPlan** with one baseline for all rows, command **information message** with baseline and merge counts (**DOM-01–DOM-04**, **QUAL-01**; see `03-VERIFICATION.md`).
+- **Phase 4 (2026-04-14):** **Multi-select QuickPick** review of cleanup candidates with **baseline** in picker chrome and per-row merge **icon + detail**; **cancel** and confirm-without-selection are **no-ops** for Git mutations; no deletion APIs in this phase (**UXP-01–UXP-03**; see `04-VERIFICATION.md`).
 
 ### Active
 
@@ -21,7 +22,7 @@ Tracked as checkable **REQ-IDs** in `.planning/REQUIREMENTS.md` (19 v1 requireme
 
 - [x] **Cleanup Branches** command and **lazy** extension activation suitable for Git workflows. *(Phase 1 — scaffold)*
 - [x] **vscode.git** integration: read branches/upstream, resolve **`origin/HEAD`** baseline with fallbacks, **gitcleaner-style** candidates (never the **current branch**). *(Phase 2 read path + Phase 3 domain and orchestration)*
-- [ ] **QuickPick** (multi-select) shows **merged vs not merged** vs the same baseline used for eligibility; user **explicitly** chooses deletes; **cancel** is a no-op.
+- [x] **QuickPick** (multi-select) shows **merged vs not merged** vs the same baseline used for eligibility; user **explicitly** chooses branches to advance; **cancel** is a no-op. *(Phase 4 — review only; deletion in Phase 5)*
 - [ ] **Safety** aligned with labels for **non-merged** selections; **local delete only**; clear **errors** and a **post-run summary**.
 - [x] **Tooling + tests** for packaging (VS Code/Cursor) and **automated domain** coverage where practical. *(Vitest `npm run test:unit`; Phase 3)*
 
@@ -36,7 +37,7 @@ Tracked as checkable **REQ-IDs** in `.planning/REQUIREMENTS.md` (19 v1 requireme
 
 - **Prior art:** [PavlikPolivka/gitcleaner](https://github.com/PavlikPolivka/gitcleaner) — “Delete Old Branches” style action: list branches **without tracking remotes**, exclude current branch, and check **merged to current branch** in the original README (here we anchor merge checks to **`origin/HEAD`** per product decision).
 - **Motivation:** No satisfactory Marketplace alternative; WebStorm is kept installed almost solely for this cleanup flow.
-- **Repository state:** Phases 1–3 landed: scaffold, Git read path, domain + merge labels + Vitest; QuickPick review UI is next (Phase 4).
+- **Repository state:** Phases 1–4 landed through **cleanup review QuickPick**; **Phase 5** is safety, local deletion, and outcomes.
 
 ## Constraints
 
@@ -73,4 +74,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-14 after Phase 3 completion*
+*Last updated: 2026-04-14 after Phase 4 completion*
