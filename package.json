@@ -1,0 +1,44 @@
+{
+  "name": "vscode-branch-cleaner",
+  "displayName": "VS Code Branch Cleaner",
+  "description": "Safe, explicit local branch cleanup inside the editor.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.96.0",
+    "node": ">=20"
+  },
+  "categories": ["Other"],
+  "main": "./dist/extension.js",
+  "extensionDependencies": ["vscode.git"],
+  "activationEvents": [
+    "onCommand:branchCleaner.cleanupBranches",
+    "workspaceContains:**/.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "branchCleaner.cleanupBranches",
+        "title": "Cleanup Branches",
+        "category": "Git"
+      }
+    ]
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "compile": "npm run check-types && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch",
+    "vscode:prepublish": "npm run package",
+    "package": "npm run check-types && node esbuild.js --production"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "3.7.1",
+    "esbuild": "0.28.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "6.0.2"
+  }
+}
