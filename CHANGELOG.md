@@ -1,5 +1,11 @@
 # vscode-branch-cleaner
 
+## 1.0.1
+
+### Patch Changes
+
+- 5294697: Fixed readme screenshot
+
 ## 1.0.0
 
 ### Major Changes
